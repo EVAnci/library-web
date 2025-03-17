@@ -36,9 +36,9 @@ def fill_database():
         try:
             db.session.commit()
             print("    [!] Usuarios cargados")
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("    [!] Error al cargar los usuarios")
+            print("    [!] Error al cargar los usuarios. Detalles del error:", e)
 
     if os.path.exists(author_path):
         with open(author_path, 'r') as authors:
@@ -48,9 +48,9 @@ def fill_database():
         try:
             db.session.commit()
             print("    [!] Autores cargados")
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("    [!] Error al cargar los autores")
+            print("    [!] Error al cargar los autores. Detalles del error:", e)
 
     if os.path.exists(book_path):
         with open(book_path, 'r') as books:
@@ -61,9 +61,9 @@ def fill_database():
         try:
             db.session.commit()
             print("    [!] Libros cargados")
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("    [!] Error al cargar los libros")
+            print("    [!] Error al cargar los libros. Detalles del error:", e)
 
     if os.path.exists(book_copy_path):
         with open(book_copy_path, 'r') as book_copies:
@@ -73,9 +73,9 @@ def fill_database():
         try:            
             db.session.commit()
             print("    [!] Copias de libros cargadas")
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("    [!] Error al cargar las copias de libros")
+            print("    [!] Error al cargar las copias de libros. Detalles del error:", e)
 
     if os.path.exists(rent_path):
         with open(rent_path, 'r') as rents:
@@ -85,9 +85,9 @@ def fill_database():
         try:
             db.session.commit()
             print("    [!] Prestamos cargados")
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("    [!] Error al cargar los prestamos")
+            print("    [!] Error al cargar los prestamos. Detalles del error:", e)
 
     if os.path.exists(notification_path):
         with open(notification_path, 'r') as notifications:
@@ -97,9 +97,9 @@ def fill_database():
         try:
             db.session.commit()
             print("    [!] Notificaciones cargadas")
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("    [!] Error al cargar las notificaciones")
+            print("    [!] Error al cargar las notificaciones. Detalles del error:", e)
 
     if os.path.exists(comment_path):
         with open(comment_path, 'r') as comments:
@@ -109,9 +109,9 @@ def fill_database():
                 db.session.add(CommentModel.from_json(comment))
                 db.session.commit()
             print("    [!] Comentarios cargados")
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("    [!] Error al cargar los comentarios")
+            print("    [!] Error al cargar los comentarios. Detalles del error:", e)
 
 if __name__ == '__main__':
     db.create_all()
